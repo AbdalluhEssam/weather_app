@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubit/get_weather_cubit/get_weather_cubit.dart';
 import 'package:weather_app/cubit/get_weather_cubit/get_weather_states.dart';
@@ -22,12 +23,17 @@ class WeatherApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               home: const HomeView(),
               theme: ThemeData(
-                // backgroundColor: ,
                 useMaterial3: false,
-                appBarTheme: const AppBarTheme(elevation: 0),
+                appBarTheme: AppBarTheme(
+                    elevation: 0,
+                    systemOverlayStyle: SystemUiOverlayStyle(
+                        statusBarColor: getThemeColor(
+                      BlocProvider.of<GetWeatherCubit>(context)
+                          .weatherModel
+                          ?.weatherCondition,
+                    ))),
                 primarySwatch: getThemeColor(
-                  BlocProvider
-                      .of<GetWeatherCubit>(context)
+                  BlocProvider.of<GetWeatherCubit>(context)
                       .weatherModel
                       ?.weatherCondition,
                 ),
