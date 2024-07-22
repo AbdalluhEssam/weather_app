@@ -24,7 +24,7 @@ class SearchView extends StatelessWidget {
           },
           // filterFn: (city, filter) =>BlocProvider.of<GetWeatherCubit>(context).city.forEach((element) { }),
 
-          popupProps: PopupProps.modalBottomSheet(
+          popupProps: PopupProps.menu(
             showSearchBox: true,
             title: const Padding(
               padding: EdgeInsets.all(8.0),
